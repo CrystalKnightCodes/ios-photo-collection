@@ -71,18 +71,42 @@
 				BA24E60E2350091F0092DE22 /* AppDelegate.swift */,
 				BA24E6102350091F0092DE22 /* SceneDelegate.swift */,
 				BA24E6142350091F0092DE22 /* Main.storyboard */,
-				BA24E62E235016BB0092DE22 /* ThemeSelectionViewController.swift */,
-				BA24E62C2350137B0092DE22 /* PhotoDetailViewController.swift */,
+				BA24E63023501A130092DE22 /* View Controllers */,
 				BA24E62A235010E30092DE22 /* PhotosCollectionViewCell.swift */,
-				BA24E62823500F4F0092DE22 /* PhotosCollectionViewController.swift */,
-				BA24E62623500D910092DE22 /* ThemeHelper.swift */,
-				BA24E62423500C270092DE22 /* PhotoController.swift */,
-				BA24E622235009FA0092DE22 /* Photo.swift */,
+				BA24E63123501AA40092DE22 /* Model */,
+				BA24E63223501AAE0092DE22 /* Helper */,
 				BA24E617235009210092DE22 /* Assets.xcassets */,
 				BA24E619235009210092DE22 /* LaunchScreen.storyboard */,
 				BA24E61C235009210092DE22 /* Info.plist */,
 			);
 			path = PhotoCollection;
+			sourceTree = "<group>";
+		};
+		BA24E63023501A130092DE22 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA24E62823500F4F0092DE22 /* PhotosCollectionViewController.swift */,
+				BA24E62C2350137B0092DE22 /* PhotoDetailViewController.swift */,
+				BA24E62E235016BB0092DE22 /* ThemeSelectionViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BA24E63123501AA40092DE22 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA24E62423500C270092DE22 /* PhotoController.swift */,
+				BA24E622235009FA0092DE22 /* Photo.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BA24E63223501AAE0092DE22 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BA24E62623500D910092DE22 /* ThemeHelper.swift */,
+			);
+			name = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

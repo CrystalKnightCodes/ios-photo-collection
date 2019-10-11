@@ -10,13 +10,18 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var imageNameLabel: UILabel!
     
-    
-    @IBAction func selectThemeAction(_ sender: UIBarButtonItem) {
+    var photo: Photo? {
+        didSet {
+            updateViews()
+        }
     }
     
-    @IBAction func addAction(_ sender: UIBarButtonItem) {
+    func updateViews() {
+        // Add functionality
     }
+    
+    
+ 
 }
