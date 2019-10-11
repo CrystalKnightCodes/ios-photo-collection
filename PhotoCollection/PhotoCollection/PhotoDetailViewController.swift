@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoDetailViewController: UIViewController {
+class PhotoDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var textField: UITextField!
@@ -21,19 +21,39 @@ class PhotoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
-        // Do any additional setup after loading the view.
+        
     }
     
+    
     @IBAction func addPhoto(_ sender: UIButton) {
+        presentImagePickerController()
     }
+    
     @IBAction func savePhoto(_ sender: UIBarButtonItem) {
+        if photo == nil {
+             
+                   guard let title = textField.text,
+                       let image = imageView.image,
+                       let imageData = image.pngData() else { return }
+                   
+                   if let photo = photo {
+                    photoController?.updatePhoto(photoToUpdate: photo, newData: imageData, newTitle: title)
+                   } else {
+                       photoController?.addPhoto(data: imageData, title: title)
+                   }
+                   navigationController?.popViewController(animated: true)        }
     }
     
     func updateViews() {
         setTheme()
-        guard let photo = photo else { return }
-        textField.text = photo.title
-        imageView.image = UIImage(data: photo.imageData)
+        if let photo = photo {
+            navigationItem.title = "Edit Photo"
+            textField.text = photo.title
+            imageView.image = UIImage(data: photo.imageData)
+        } else {
+            navigationItem.title = "Save Photo"
+        }
+        
     }
     
     func setTheme() {
@@ -46,7 +66,22 @@ class PhotoDetailViewController: UIViewController {
         }
     }
     
-    /*
+    func presentImagePickerController() {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+      func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+          
+          picker.dismiss(animated: true, completion: nil)
+          
+          guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+          imageView.image = image
+      }    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

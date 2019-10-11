@@ -19,9 +19,13 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }
     
     func updateViews() {
-        // Add functionality
+      guard let photo = photo else { return }
+               
+               imageNameLabel.text = photo.title
+               imageView.image = UIImage(data: photo.imageData)
+           }
     }
     
     
  
-}
+
