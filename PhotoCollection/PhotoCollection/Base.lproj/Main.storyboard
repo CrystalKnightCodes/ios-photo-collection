@@ -13,7 +13,7 @@
             <objects>
                 <collectionViewController id="tWt-DU-OF1" customClass="PhotosCollectionViewController" customModule="PhotoCollection" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oOv-pu-NEn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mf0-xy-RTT">
@@ -54,7 +54,7 @@
                                 <connections>
                                     <outlet property="imageNameLabel" destination="u4E-We-shT" id="Tp9-ke-zE1"/>
                                     <outlet property="imageView" destination="h65-Gm-j7n" id="iE6-yF-Bs5"/>
-                                    <segue destination="V4R-zO-qYn" kind="show" identifier="showPhotoDetail" id="b6h-Sz-kdK"/>
+                                    <segue destination="V4R-zO-qYn" kind="show" identifier="showPhotoDetailSegue" id="b6h-Sz-kdK"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -64,7 +64,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="W4i-cL-vl7">
-                        <barButtonItem key="leftBarButtonItem" title="Select Theme" id="7Gb-T5-85g"/>
+                        <barButtonItem key="leftBarButtonItem" title="Select Theme" id="7Gb-T5-85g">
+                            <connections>
+                                <segue destination="XGs-ej-P9H" kind="presentation" identifier="selectThemeSegue" id="8Tx-bM-jkC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QDJ-A8-UEj">
                             <connections>
                                 <segue destination="V4R-zO-qYn" kind="show" identifier="addPhotoDetailSegue" id="PGo-Tt-lM0"/>
@@ -81,7 +85,7 @@
             <objects>
                 <viewController id="XGs-ej-P9H" customClass="ThemeSelectionViewController" customModule="PhotoCollection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NeI-F1-N6Y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-nr-etP">
@@ -101,7 +105,6 @@
                                                 <state key="normal" title="Dark"/>
                                                 <connections>
                                                     <action selector="selectDarkTheme:" destination="XGs-ej-P9H" eventType="touchUpInside" id="lM9-0j-Cff"/>
-                                                    <segue destination="tWt-DU-OF1" kind="presentation" identifier="selectDarkThemeSegue" id="iHg-rp-BXP"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhl-7Y-ILl">
@@ -109,7 +112,6 @@
                                                 <state key="normal" title="Purple"/>
                                                 <connections>
                                                     <action selector="selectPurpleTheme:" destination="XGs-ej-P9H" eventType="touchUpInside" id="wwj-Hh-SAj"/>
-                                                    <segue destination="tWt-DU-OF1" kind="presentation" identifier="selectPurpleThemeSegue" id="TG5-19-nvM"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -130,22 +132,22 @@
             <objects>
                 <viewController id="V4R-zO-qYn" customClass="PhotoDetailViewController" customModule="PhotoCollection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WlJ-FQ-CAC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="hPw-Ae-6l1">
-                                <rect key="frame" x="20" y="20" width="374" height="802"/>
+                                <rect key="frame" x="20" y="108" width="374" height="680"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fIW-WH-vgp">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="410.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="576"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0q7-l0-zTe">
-                                        <rect key="frame" x="0.0" y="439.5" width="374" height="109"/>
+                                        <rect key="frame" x="0.0" y="605" width="374" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9j-7O-fQt">
-                                        <rect key="frame" x="0.0" y="577.5" width="374" height="224.5"/>
+                                        <rect key="frame" x="0.0" y="663" width="374" height="17"/>
                                         <state key="normal" title="Add Photo"/>
                                         <connections>
                                             <action selector="addPhoto:" destination="V4R-zO-qYn" eventType="touchUpInside" id="NzK-fF-qFg"/>
@@ -202,7 +204,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b6h-Sz-kdK"/>
-        <segue reference="iHg-rp-BXP"/>
+        <segue reference="PGo-Tt-lM0"/>
     </inferredMetricsTieBreakers>
 </document>

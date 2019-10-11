@@ -12,6 +12,9 @@ private let reuseIdentifier = "Cell"
 
 class PhotosCollectionViewController: UICollectionViewController {
 
+    let photoController = PhotoController()
+    let themeHelper = ThemeHelper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,35 +26,64 @@ class PhotosCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    func setTheme() {
+        guard let themeHelper = themeHelper.themePreference else {return}
+        
+        if themeHelper == "Dark" {
+            collectionView.backgroundView?.backgroundColor = UIColor.darkGray
+        } else {
+            collectionView.backgroundView?.backgroundColor = UIColor.purple
+        }
+    }
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showPhotoDetailSegue":
+            guard let editPhotoVC = segue.destination as? PhotoDetailViewController,
+                let cell = sender as? PhotosCollectionViewCell,
+                let indexPath = collectionView.indexPath(for: cell) else { fatalError() }
+            editPhotoVC.themeHelper = themeHelper
+            editPhotoVC.photoController = photoController
+            editPhotoVC.photo = photoController.photos[indexPath.item]
+        case "addPhotoDetailSegue":
+                   guard let createPhotoVC = segue.destination as? PhotoDetailViewController else { return }
+                   createPhotoVC.themeHelper = themeHelper
+                   createPhotoVC.photoController = photoController
+        case "selectThemeSegue":
+            guard let selectThemeVC = segue.destination as? ThemeSelectionViewController else { return }
+            selectThemeVC.themeHelper = themeHelper
+        default:
+            fatalError("Did not find a segue")
+        }
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return photoController.photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotosCollectionViewCell else { fatalError("Failed to find cell") }
     
-        // Configure the cell
-    
+        let photo = photoController.photos[indexPath.item]
+
+        cell.imageNameLabel.text = photo.title
+        cell.imageView.image = UIImage(data: photo.imageData)
         return cell
     }
 
