@@ -20,13 +20,30 @@ class PhotoDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateViews()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func addPhoto(_ sender: UIButton) {
     }
     @IBAction func savePhoto(_ sender: UIBarButtonItem) {
+    }
+    
+    func updateViews() {
+        setTheme()
+        guard let photo = photo else { return }
+        textField.text = photo.title
+        imageView.image = UIImage(data: photo.imageData)
+    }
+    
+    func setTheme() {
+        guard let themeHelper = themeHelper?.themePreference else { return }
+
+        if themeHelper == "Dark" {
+        view.backgroundColor = UIColor.darkGray
+        } else {
+            view.backgroundColor = UIColor.purple
+        }
     }
     
     /*

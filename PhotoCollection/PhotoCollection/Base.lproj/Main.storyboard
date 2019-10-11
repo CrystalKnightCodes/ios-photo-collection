@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Photos Collection View Controller-->
+        <!--Photo Collection-->
         <scene sceneID="5pU-fE-mpN">
             <objects>
                 <collectionViewController id="tWt-DU-OF1" customClass="PhotosCollectionViewController" customModule="PhotoCollection" customModuleProvider="target" sceneMemberID="viewController">
@@ -63,7 +63,7 @@
                             <outlet property="delegate" destination="tWt-DU-OF1" id="zt2-9P-MO0"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="W4i-cL-vl7">
+                    <navigationItem key="navigationItem" title="Photo Collection" id="W4i-cL-vl7">
                         <barButtonItem key="leftBarButtonItem" title="Select Theme" id="7Gb-T5-85g">
                             <connections>
                                 <segue destination="XGs-ej-P9H" kind="presentation" identifier="selectThemeSegue" id="8Tx-bM-jkC"/>
@@ -88,8 +88,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-nr-etP">
-                                <rect key="frame" x="38" y="374" width="298.5" height="70.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-nr-etP">
+                                <rect key="frame" x="58" y="386" width="298.5" height="70.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the theme you would like to use:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YX-nf-p6l">
                                         <rect key="frame" x="0.0" y="0.0" width="298.5" height="20.5"/>
@@ -98,7 +98,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="xgq-07-4zk">
-                                        <rect key="frame" x="60.5" y="40.5" width="178" height="30"/>
+                                        <rect key="frame" x="60" y="40.5" width="178" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVW-5P-OGP">
                                                 <rect key="frame" x="0.0" y="0.0" width="33" height="30"/>
@@ -120,6 +120,10 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="J6a-nr-etP" firstAttribute="centerY" secondItem="NeI-F1-N6Y" secondAttribute="centerY" id="29m-SR-Gjf"/>
+                            <constraint firstItem="J6a-nr-etP" firstAttribute="centerX" secondItem="NeI-F1-N6Y" secondAttribute="centerX" id="pBd-S1-sIl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cnK-YU-ibX"/>
                     </view>
                 </viewController>
@@ -127,7 +131,7 @@
             </objects>
             <point key="canvasLocation" x="1035" y="688"/>
         </scene>
-        <!--Photo Detail View Controller-->
+        <!--Add/View Photo-->
         <scene sceneID="FOK-7c-N59">
             <objects>
                 <viewController id="V4R-zO-qYn" customClass="PhotoDetailViewController" customModule="PhotoCollection" customModuleProvider="target" sceneMemberID="viewController">
@@ -136,18 +140,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="hPw-Ae-6l1">
-                                <rect key="frame" x="20" y="108" width="374" height="680"/>
+                                <rect key="frame" x="20" y="160" width="374" height="576"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fIW-WH-vgp">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="576"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="458.5"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0q7-l0-zTe">
-                                        <rect key="frame" x="0.0" y="605" width="374" height="29"/>
+                                        <rect key="frame" x="0.0" y="487.5" width="374" height="32.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9j-7O-fQt">
-                                        <rect key="frame" x="0.0" y="663" width="374" height="17"/>
+                                        <rect key="frame" x="0.0" y="549" width="374" height="27"/>
                                         <state key="normal" title="Add Photo"/>
                                         <connections>
                                             <action selector="addPhoto:" destination="V4R-zO-qYn" eventType="touchUpInside" id="NzK-fF-qFg"/>
@@ -173,7 +177,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="MTh-TO-yQ0"/>
+                    <navigationItem key="navigationItem" title="Add/View Photo" id="MTh-TO-yQ0"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="fIW-WH-vgp" id="ai6-lz-GzZ"/>
@@ -189,8 +193,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CPx-WL-xCu" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xkC-x2-Ktx">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="xkC-x2-Ktx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
