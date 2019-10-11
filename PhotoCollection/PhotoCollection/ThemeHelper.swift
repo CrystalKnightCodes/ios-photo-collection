@@ -27,7 +27,7 @@ class ThemeHelper{
     }
     
     func setThemePreferenceToBlue() {
-        UserDefaults.standard.set("Blue", forKey: ThemeHelper.themePreferenceKey)
+        UserDefaults.standard.set("Purple", forKey: ThemeHelper.themePreferenceKey)
     }
     
     var themePreference: String? {
