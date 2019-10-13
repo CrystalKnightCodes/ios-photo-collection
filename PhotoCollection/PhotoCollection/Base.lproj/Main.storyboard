@@ -136,24 +136,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="hPw-Ae-6l1">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hPw-Ae-6l1">
                                 <rect key="frame" x="20" y="160" width="374" height="576"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fIW-WH-vgp">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="455"/>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0q7-l0-zTe">
-                                        <rect key="frame" x="0.0" y="484" width="374" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9j-7O-fQt">
-                                        <rect key="frame" x="0.0" y="546.5" width="374" height="29.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
                                         <state key="normal" title="Add Photo"/>
                                         <connections>
                                             <action selector="addPhoto:" destination="V4R-zO-qYn" eventType="touchUpInside" id="NzK-fF-qFg"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Image Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0q7-l0-zTe">
+                                        <rect key="frame" x="0.0" y="68" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fIW-WH-vgp">
+                                        <rect key="frame" x="0.0" y="122" width="374" height="454"/>
+                                    </imageView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -168,13 +168,14 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="e9H-Ck-8uK"/>
-                        <barButtonItem systemItem="save" id="bp8-xb-cRq">
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Add/View Photo" id="MTh-TO-yQ0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bp8-xb-cRq">
                             <connections>
                                 <action selector="savePhoto:" destination="V4R-zO-qYn" id="zKo-2b-OF5"/>
                             </connections>
                         </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Add/View Photo" id="MTh-TO-yQ0"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="fIW-WH-vgp" id="ai6-lz-GzZ"/>

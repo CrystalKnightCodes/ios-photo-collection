@@ -12,26 +12,27 @@ private let reuseIdentifier = "photoCell"
 
 class PhotosCollectionViewController: UICollectionViewController {
 
+    // MARK: - Properties
     let photoController = PhotoController()
     let themeHelper = ThemeHelper()
     
+    
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
        
-        // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        setTheme()       
+    
+            setTheme()
     }
     
       override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(animated)
-          setTheme()
-          collectionView?.reloadData()
+          
+            setTheme()
+            collectionView?.reloadData()
       }
     
- 
     
     func setTheme() {
         guard let themeHelper = themeHelper.themePreference else { return }
@@ -43,10 +44,23 @@ class PhotosCollectionViewController: UICollectionViewController {
          }
     }
 
+    // MARK: - Data Source
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photoController.photos.count
+    }
+    
+// FIXME: Photos do not save properly, error "Failed to find cell"
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotosCollectionViewCell else { fatalError("Failed to find cell") }
+        
+        let photo = photoController.photos[indexPath.item]
+
+        cell.imageNameLabel.text = photo.title
+        cell.imageView.image = UIImage(data: photo.imageData)
+        return cell
+    }
 
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showPhotoDetailSegue":
@@ -66,61 +80,5 @@ class PhotosCollectionViewController: UICollectionViewController {
         default:
             fatalError("Did not find a segue")
         }
-
     }
-    
-
-    // MARK: UICollectionViewDataSource
-
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoController.photos.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotosCollectionViewCell else { fatalError("Failed to find cell") }
-        
-        let photo = photoController.photos[indexPath.item]
-
-        cell.imageNameLabel.text = photo.title
-        cell.imageView.image = UIImage(data: photo.imageData)
-        return cell
-    }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }
