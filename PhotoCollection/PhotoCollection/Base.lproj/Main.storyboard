@@ -62,7 +62,7 @@
                     <navigationItem key="navigationItem" title="Photo Collection" id="W4i-cL-vl7">
                         <barButtonItem key="leftBarButtonItem" title="Select Theme" id="7Gb-T5-85g">
                             <connections>
-                                <segue destination="XGs-ej-P9H" kind="presentation" identifier="selectThemeSegue" id="8Tx-bM-jkC"/>
+                                <segue destination="XGs-ej-P9H" kind="show" identifier="selectThemeSegue" id="8Tx-bM-jkC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QDJ-A8-UEj">
@@ -81,11 +81,11 @@
             <objects>
                 <viewController id="XGs-ej-P9H" customClass="ThemeSelectionViewController" customModule="PhotoCollection" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NeI-F1-N6Y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-nr-etP">
-                                <rect key="frame" x="58" y="386" width="298.5" height="70.5"/>
+                                <rect key="frame" x="58" y="413" width="298.5" height="70.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the theme you would like to use:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YX-nf-p6l">
                                         <rect key="frame" x="0.0" y="0.0" width="298.5" height="20.5"/>
@@ -122,6 +122,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cnK-YU-ibX"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YxQ-8H-uZb"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUQ-Xe-GFH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

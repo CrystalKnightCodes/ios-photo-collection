@@ -21,13 +21,13 @@ class ThemeSelectionViewController: UIViewController {
     
     @IBAction func selectDarkTheme(_ sender: UIButton) {
         themeHelper?.setThemePreferenceToDark()
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
         
     }
     
     @IBAction func selectPurpleTheme(_ sender: UIButton) {
         themeHelper?.setThemePreferenceToPurple()
-         dismiss(animated: true, completion: nil)
+         self.navigationController?.popToRootViewController(animated: true)
         
     }
     /*
