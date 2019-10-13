@@ -9,14 +9,26 @@
 import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
+   // MARK: - Outlets
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var imageNameLabel: UILabel!
     
-    
-    @IBAction func selectThemeAction(_ sender: UIBarButtonItem) {
+    // MARK: - Properties
+    var photo: Photo? {
+        didSet {
+            updateViews()
+        }
     }
     
-    @IBAction func addAction(_ sender: UIBarButtonItem) {
+    // MARK: - View
+    func updateViews() {
+      guard let photo = photo else { return }
+               
+               imageNameLabel.text = photo.title
+               imageView.image = UIImage(data: photo.imageData)
+           }
     }
-}
+    
+    
+ 
+

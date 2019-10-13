@@ -59,6 +59,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>NSPhotoLibraryUsageDescription</string>
 	</array>
 </dict>
 </plist>

@@ -8,82 +8,77 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "photoCell"
 
 class PhotosCollectionViewController: UICollectionViewController {
 
+    // MARK: - Properties
+    let photoController = PhotoController()
+    let themeHelper = ThemeHelper()
+    
+    
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
+       
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+    
+            setTheme()
+    }
+    
+      override func viewWillAppear(_ animated: Bool) {
+          super.viewWillAppear(animated)
+          
+            setTheme()
+            collectionView?.reloadData()
+      }
+    
+    
+    func setTheme() {
+        guard let themeHelper = themeHelper.themePreference else { return }
+        
+         if themeHelper == "Dark" {
+            collectionView.backgroundColor = .darkGray
+         } else {
+            collectionView.backgroundColor = .purple
+         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
+    // MARK: - Data Source
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return photoController.photos.count
     }
-
+    
+// FIXME: Photos do not save properly, error "Failed to find cell"
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotosCollectionViewCell else { fatalError("Failed to find cell") }
+        
+        let photo = photoController.photos[indexPath.item]
+
+        cell.imageNameLabel.text = photo.title
+        cell.imageView.image = UIImage(data: photo.imageData)
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showPhotoDetailSegue":
+            guard let showPhotoVC = segue.destination as? PhotoDetailViewController,
+                let cell = sender as? PhotosCollectionViewCell,
+                let indexPath = collectionView.indexPath(for: cell) else { fatalError() }
+            showPhotoVC.themeHelper = themeHelper
+            showPhotoVC.photoController = photoController
+            showPhotoVC.photo = photoController.photos[indexPath.item]
+        case "addPhotoDetailSegue":
+                   guard let createPhotoVC = segue.destination as? PhotoDetailViewController else { return }
+                   createPhotoVC.themeHelper = themeHelper
+                   createPhotoVC.photoController = photoController
+        case "selectThemeSegue":
+            guard let selectThemeVC = segue.destination as? ThemeSelectionViewController else { return }
+            selectThemeVC.themeHelper = themeHelper
+        default:
+            fatalError("Did not find a segue")
+        }
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
 }
